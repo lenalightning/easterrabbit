@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Coelho Astronauta</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #5D3FD3, #8E44AD);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .card {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      perspective: 1000px;
+    }
+
+    .card:hover {
+      transform: rotateY(5deg) rotateX(5deg) scale(1.02);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .badge {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      position: relative;
+      border: 8px solid gold;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+    }
+
+    .badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #00C896;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00b183;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">
+      <img src="https://elements-resized.envatousercontent.com/elements-cover-images/cda59cbd-c6a8-4c99-81fe-a26e8c069a66?w=433&cf_fit=scale-down&q=85&format=auto&s=75b9efc644220c724235395c1a9827b41caac7a279c99368181c13e8a87fefc7" alt="Coelho Astronauta">
+    </div>
+    <h1>Parabéns por chegar até aqui,<br>resgate o seu coelho astronauta!</h1>
+    <button>Resgatar agora</button>
+  </div>
+
+  <!-- Cascata de cenouras e foguetes -->
+  <script>
+    const emojis = ['🥕', '🚀'];
+    
+    function createFallingItem() {
+      const item = document.createElement('div');
+      item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      item.style.position = 'fixed';
+      item.style.left = Math.random() * 100 + 'vw';
+      item.style.top = '-50px';
+      item.style.fontSize = `${Math.random() * 20 + 20}px`;
+      item.style.opacity = Math.random();
+      item.style.zIndex = 999;
+      item.style.pointerEvents = 'none';
+      document.body.appendChild(item);
+
+      let top = -50;
+      const fallSpeed = Math.random() * 2 + 1;
+
+      function fall() {
+        top += fallSpeed;
+        item.style.top = top + 'px';
+        if (top < window.innerHeight + 50) {
+          requestAnimationFrame(fall);
+        } else {
+          item.remove();
+        }
+      }
+
+      fall();
+    }
+
+    setInterval(createFallingItem, 300);
+  </script>
+
+</body>
+</html>
