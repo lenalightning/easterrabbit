@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Coelho Astronauta</title>
   <style>
     * {
@@ -12,11 +12,11 @@
 
     body {
       height: 100vh;
-      background: linear-gradient(135deg, #5d3fd3, #8e44ad);
+      background: linear-gradient(135deg, #5D3FD3, #8E44AD);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       overflow: hidden;
     }
@@ -26,7 +26,7 @@
       padding: 40px;
       background-color: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       perspective: 1000px;
     }
@@ -61,7 +61,7 @@
     button {
       padding: 12px 24px;
       font-size: 1em;
-      background-color: #00c896;
+      background-color: #00C896;
       border: none;
       border-radius: 8px;
       color: white;
@@ -100,10 +100,7 @@
 <body>
   <div class="card">
     <div class="badge">
-      <img
-        src="https://elements-resized.envatousercontent.com/elements-cover-images/cda59cbd-c6a8-4c99-81fe-a26e8c069a66?w=433&cf_fit=scale-down&q=85&format=auto&s=75b9efc644220c724235395c1a9827b41caac7a279c99368181c13e8a87fefc7"
-        alt="Coelho Astronauta"
-      />
+      <img src="https://elements-resized.envatousercontent.com/elements-cover-images/cda59cbd-c6a8-4c99-81fe-a26e8c069a66?w=433&cf_fit=scale-down&q=85&format=auto&s=75b9efc644220c724235395c1a9827b41caac7a279c99368181c13e8a87fefc7" alt="Coelho Astronauta" >
     </div>
     <h1>Parabéns por chegar até aqui!<br />Resgate o seu coelho astronauta 🚀</h1>
     <button>Resgatar agora</button>
@@ -113,10 +110,10 @@
   <script>
     const btn = document.querySelector("button");
 
-    const emojis = ["🥕", "🚀"];
+    const emojis = ['🥕', '🚀'];
 
     function createFallingItem() {
-      const item = document.createElement("div");
+      const item = document.createElement('div');
       item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
       const size = Math.random() * 20 + 20;
@@ -124,10 +121,10 @@
 
       item.classList.add("falling");
       item.style.top = 0;
-      item.style.left = Math.random() * 100 + "vw";
-      item.style.fontSize = size + "px";
+      item.style.left = Math.random() * 100 + 'vw';
+      item.style.fontSize = size + 'px';
       // item.style.opacity = Math.random();
-      item.style.animationDuration = duration + "s";
+      item.style.animationDuration = duration + 's';
 
       document.body.appendChild(item);
 
