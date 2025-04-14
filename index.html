@@ -69,54 +69,76 @@
       transition: background 0.3s ease;
     }
 
-    button:hover {
+    button:disabled {
+      background-color: gray;
+      cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
       background-color: #00b183;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(150vh);
+        opacity: 0;
+      }
+    }
+
+    .falling {
+      position: fixed;
+      animation: fall linear forwards;
+      pointer-events: none;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="badge">
-      <img src="https://elements-resized.envatousercontent.com/elements-cover-images/cda59cbd-c6a8-4c99-81fe-a26e8c069a66?w=433&cf_fit=scale-down&q=85&format=auto&s=75b9efc644220c724235395c1a9827b41caac7a279c99368181c13e8a87fefc7" alt="Coelho Astronauta">
+      <img src="https://elements-resized.envatousercontent.com/elements-cover-images/cda59cbd-c6a8-4c99-81fe-a26e8c069a66?w=433&cf_fit=scale-down&q=85&format=auto&s=75b9efc644220c724235395c1a9827b41caac7a279c99368181c13e8a87fefc7" alt="Coelho Astronauta" >
     </div>
-    <h1>Parabéns por chegar até aqui!<br>Resgate o seu coelho astronauta 🚀</h1>
+    <h1>Parabéns por chegar até aqui!<br />Resgate o seu coelho astronauta 🚀</h1>
     <button>Resgatar agora</button>
   </div>
 
   <!-- Cascata de cenouras e foguetes -->
   <script>
+    const btn = document.querySelector("button");
+
     const emojis = ['🥕', '🚀'];
-    
+
     function createFallingItem() {
       const item = document.createElement('div');
       item.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      item.style.position = 'fixed';
+
+      const size = Math.random() * 20 + 20;
+      const duration = Math.random() * 2 + 3; // tempo de queda entre 3 e 5 segundos
+
+      item.classList.add("falling");
+      item.style.top = 0;
       item.style.left = Math.random() * 100 + 'vw';
-      item.style.top = '-50px';
-      item.style.fontSize = `${Math.random() * 20 + 20}px`;
-      item.style.opacity = Math.random();
-      item.style.zIndex = 999;
-      item.style.pointerEvents = 'none';
+      item.style.fontSize = size + 'px';
+      // item.style.opacity = Math.random();
+      item.style.animationDuration = duration + 's';
+
       document.body.appendChild(item);
 
-      let top = -50;
-      const fallSpeed = Math.random() * 2 + 1;
-
-      function fall() {
-        top += fallSpeed;
-        item.style.top = top + 'px';
-        if (top < window.innerHeight + 50) {
-          requestAnimationFrame(fall);
-        } else {
-          item.remove();
-        }
-      }
-
-      fall();
+      // remove o item após o tempo da animação
+      setTimeout(() => item.remove(), duration * 1000);
     }
 
     setInterval(createFallingItem, 300);
-  </script>
 
+    // permite apenas um clique no botão
+    btn.addEventListener("click", (event) => {
+      console.log("Você clicou no botão");
+      event.target.disabled = true;
+    });
+  </script>
 </body>
 </html>
